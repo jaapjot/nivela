@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nivelá · estudiar como un juego</title>
+<meta name="description" content="Planificador de estudio con reloj de 24 horas, experiencia, monedas y recompensas propias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="lvl" id="lvl">Nv 1</div>
+    <div class="xpwrap">
+      <div class="xptxt"><span>Experiencia</span><span id="xptxt">0 / 100</span></div>
+      <div class="bar"><i id="xpbar" style="width:0%"></i></div>
+    </div>
+    <div class="coins" id="coins">0 🪙</div>
+  </header>
+
+  <main>
+    <section id="v-hoy">
+      <div class="daynav">
+        <button class="iconbtn" data-act="prevDay" aria-label="Día anterior">‹</button>
+        <h1 id="dateLabel"></h1>
+        <button class="iconbtn" data-act="nextDay" aria-label="Día siguiente">›</button>
+      </div>
+      <button class="todaylink" data-act="goToday" id="todayLink" hidden>Volver a hoy</button>
+      <div id="ringWrap">
+        <div id="ringSvg"></div>
+        <div id="ctr"></div>
+      </div>
+      <button class="primary addbtn" data-act="openTask">Agregar bloque</button>
+      <ul class="list" id="taskList"></ul>
+    </section>
+
+    <section id="v-tienda" hidden>
+      <div class="bigcoins"><div><b id="coinsBig">0</b><br><span>monedas disponibles</span></div><div style="font-size:34px" aria-hidden="true">🪙</div></div>
+      <h2>Recompensas</h2>
+      <div class="grid" id="shopGrid"></div>
+      <h2>Para disfrutar</h2>
+      <div id="invList"></div>
+    </section>
+
+    <section id="v-progreso" hidden>
+      <div class="stats" id="stats"></div>
+      <h2>Horas por materia</h2>
+      <div id="subjList"></div>
+      <div class="inline">
+        <input id="sName" maxlength="40" placeholder="Nueva materia" aria-label="Nombre de la nueva materia">
+        <button class="primary" data-act="addSubj">Sumar</button>
+      </div>
+      <button class="reset" id="resetBtn" data-act="reset">Borrar todo y empezar de cero</button>
+    </section>
+  </main>
+</div>
+
+<nav aria-label="Secciones"><div class="in">
+  <button data-act="tab" data-tab="hoy" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Hoy</button>
+  <button data-act="tab" data-tab="tienda"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>Tienda</button>
+  <button data-act="tab" data-tab="progreso"><svg viewBox="0 0 24 24"><path d="M5 20V12M12 20V5M19 20V9"/></svg>Progreso</button>
+</div></nav>
+
+<div class="scrim" id="scrim" hidden data-act="close"></div>
+
+<section class="sheet" id="sheetTask" role="dialog" aria-label="Nuevo bloque" hidden>
+  <h2>Nuevo bloque</h2>
+  <label>¿Qué vas a hacer?<input id="tTitle" maxlength="60" placeholder="Ej: Guía 3 de límites"></label>
+  <label>Materia<select id="tSubj"></select></label>
+  <div class="row2">
+    <label>Desde<input type="time" id="tStart"></label>
+    <label>Duración<select id="tDur">
+      <option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option>
+      <option value="60" selected>1 h</option><option value="90">1 h 30</option><option value="120">2 h</option>
+      <option value="180">3 h</option><option value="240">4 h</option>
+    </select></label>
+  </div>
+  <div class="actions"><button class="ghost" data-act="close">Cancelar</button><button class="primary" data-act="saveTask">Agregar bloque</button></div>
+</section>
+
+<section class="sheet" id="sheetReward" role="dialog" aria-label="Nueva recompensa" hidden>
+  <h2>Nueva recompensa</h2>
+  <label>¿Con qué te premiás?<input id="rName" maxlength="40" placeholder="Ej: Tarde de PlayStation"></label>
+  <div class="row2">
+    <label>Ícono<input id="rEmo" maxlength="4" value="🎁"></label>
+    <label>Costo en monedas<input id="rCost" type="number" min="5" step="5" value="100" inputmode="numeric"></label>
+  </div>
+  <div class="actions"><button class="ghost" data-act="close">Cancelar</button><button class="primary" data-act="saveReward">Agregar recompensa</button></div>
+</section>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
