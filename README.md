@@ -65,11 +65,6 @@ captura-*.png  imágenes de este README
 
 `Nivela-un-solo-archivo.html` es la misma app en un único archivo, por si se prefiere abrir sin más.
 
-## Cómo usarlo
-
-**En tu computadora:** abrí `index.html` con el navegador, con todos los archivos en la misma carpeta.
-
-**Publicado con GitHub Pages:** subí los archivos, andá a **Settings → Pages**, elegí la rama `main` y `/ (root)`, y en un minuto queda en `https://TU-USUARIO.github.io/nivela/`.
 
 ## Cómo se desarrolló
 
